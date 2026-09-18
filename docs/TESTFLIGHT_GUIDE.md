@@ -2,118 +2,62 @@
 
 **Author:** Bates LLC / Daniel Bates  
 **Contact:** help@batesai.org · https://batesai.org  
-**Bundle ID:** `org.batesai.ffxi`  
-**App Name:** FFXI Delta  
+**Bundle ID:** `org.batesai.ffxi` (Registered ID: `W2BK7MXMZK`, Team: `MG4YW8XX2Z`)  
+**Provisioning Profile:** `FFXI Delta AppStore Profile` (`86d1ee98-d13b-4fbe-9360-0803f06c8217`)  
+**Signing Identity:** `Apple Distribution: Daniel Bates (MG4YW8XX2Z)`  
+**App Name:** `FFXI Delta`  
 
 ---
 
-## 1. Prerequisites
+## 1. Quick Start: One-Click TestFlight Pipeline
 
-To upload and distribute **FFXI Delta** on TestFlight, you need:
-* Active Apple Developer Account (`developer.apple.com`)
-* Mac with Xcode 15+ or Xcode 16+ (installed at `/Applications/Xcode.app`)
-* App Store Connect access (`appstoreconnect.apple.com`)
-
----
-
-## 2. App Store Connect Setup (One-Time)
-
-1. **Register the App ID:**
-   * Go to **Certificates, Identifiers & Profiles** > **Identifiers**.
-   * Click **+** to add an App ID (`App`).
-   * **Description:** `FFXI Delta for iOS`
-   * **Bundle ID (Explicit):** `org.batesai.ffxi`
-   * Under Capabilities, check **Game Center** (optional) and **Extended Virtual Controller / Game Controller**.
-   * Click **Register**.
-
-2. **Create the New App in App Store Connect:**
-   * Go to [App Store Connect Apps](https://appstoreconnect.apple.com/apps).
-   * Click the **+** button > **New App**.
-   * **Platforms:** iOS
-   * **Name:** `FFXI Delta` (or `FFXI Advance - Vana'diel`)
-   * **Primary Language:** English (U.S.)
-   * **Bundle ID:** Select `org.batesai.ffxi`
-   * **SKU:** `FFXI-DELTA-IOS-01`
-   * **User Access:** Full Access
-   * Click **Create**.
-
-3. **Export Compliance (Pre-configured):**
-   * In `Info.plist`, the key `ITSAppUsesNonExemptEncryption` is already set to `<false/>`.
-   * TestFlight will automatically bypass the cryptographic export compliance question when processing new builds.
-
----
-
-## 3. Signing & Building in Xcode
-
-### Option A: Using Xcode GUI
-
-1. Open the project in Xcode:
-   ```bash
-   open "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta/ios/FFXIDelta.xcodeproj"
-   ```
-2. In the Project Navigator, select the **FFXIDelta** project root.
-3. Select the **FFXIDelta** target > **Signing & Capabilities**.
-4. Check **Automatically manage signing**.
-5. Select your Apple Developer Account **Team** from the dropdown.
-6. In the top destination bar, select **Any iOS Device (arm64)**.
-7. Go to **Product** > **Archive**.
-8. When the Organizer window opens, click **Distribute App** > **TestFlight & App Store** > **Upload**.
-
----
-
-### Option B: Automated Terminal Release Pipeline
-
-You can run the automated script included in this repository:
+The repository includes a fully automated, headless release pipeline that compiles, signs with your Apple Distribution identity, packages the `.ipa`, and uploads to TestFlight:
 
 ```bash
 cd "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta"
-bash scripts/archive_testflight.sh
+bash scripts/deploy_testflight.sh
 ```
 
-This will:
-1. Compile the latest GBA ROM (`rom/dist/FFXI-Advance.gba`).
-2. Sync the ROM into the iOS Resources directory.
-3. Build the iOS Release Archive (`dist/testflight/FFXIDelta.xcarchive`).
-4. Export the signed `.ipa` package ready for upload.
+This pipeline executes:
+1. `scripts/package_testflight_ipa.py`: Unlocks the CI keychain, embeds the distribution provisioning profile, signs the binary with your Apple Distribution certificate, and outputs `dist/testflight/export/FFXIDelta.ipa`.
+2. `scripts/upload_testflight.sh`: Validates and uploads `FFXIDelta.ipa` to TestFlight using `xcrun altool` and your App Store Connect API Key (`32R84GFV2F`).
+3. `scripts/invite_testflight_tester.py`: Adds `danielalanbates@gmail.com` to the TestFlight beta testing group and triggers the email invitation with the installation link.
 
-To upload the IPA directly to TestFlight from terminal:
+---
 
+## 2. App Store Connect Setup (One-Time App Entry)
+
+Apple's public App Store Connect REST API does not allow programmatically creating the initial root Application entity (`POST /v1/apps` returns `403 Forbidden`). This 1-minute step is performed once in the web portal:
+
+1. Open [App Store Connect Apps](https://appstoreconnect.apple.com/apps).
+2. Click the **+** button > **New App**.
+3. Fill in the fields:
+   * **Platforms:** `iOS`
+   * **Name:** `FFXI Delta` (or `FFXI Advance - Vana'diel`)
+   * **Primary Language:** `English (U.S.)`
+   * **Bundle ID:** Select `org.batesai.ffxi` (already registered to team `MG4YW8XX2Z`)
+   * **SKU:** `org.batesai.ffxi`
+   * **User Access:** Full Access
+4. Click **Create**.
+
+Once created, run:
 ```bash
-xcrun altool --upload-app \
-  -f "dist/testflight/export/FFXIDelta.ipa" \
-  -t ios \
-  -u "danielalanbates@gmail.com" \
-  -p "<app-specific-password>"
+bash scripts/deploy_testflight.sh
 ```
-
-*(Note: Generate an app-specific password at `appleid.apple.com` > Security > App-Specific Passwords).*
-
-Alternatively, you can use the free **Apple Transporter** app from the Mac App Store:
-* Open Transporter.
-* Drag and drop `FFXIDelta.ipa`.
-* Click **Deliver**.
+The IPA uploads immediately, Apple processes the build (~5-10 minutes), and TestFlight sends an invitation email to `danielalanbates@gmail.com`!
 
 ---
 
-## 4. Setting Up TestFlight Playtesting
+## 3. What Testers Can Do in the TestFlight App
 
-### 4.1 Internal Testing (Immediate)
-* Go to **App Store Connect** > **FFXI Delta** > **TestFlight** tab.
-* Under **Internal Groups**, add yourself and your core team.
-* Builds become available to internal testers immediately upon processing (~5-10 minutes) without requiring App Review!
-
-### 4.2 External Testing & Public Link
-* Under **External Groups**, click **+** (e.g., "FFXI Community Playtesters").
-* Add external testers via email or enable **Public Link**.
-* Provide a brief "What to Test" description:
-  > *"Test character creation across all 5 races and 6 starter jobs. Explore San d'Oria, Ronfaure, and Valkurm Dunes. Engage in real-time combat, test Weapon Skills at 1000 TP, and test exporting the ROM to Delta using the top-bar Delta button."*
-* Apple will perform a light beta review (typically approved in 24 hours), after which anyone with the link can install and playtest on their iPhone or iPad!
+* **Play Final Fantasy XI Advance:** Full 60 FPS gameplay on iPhone & iPad with native touch controls, virtual D-Pad, action buttons, and haptic feedback.
+* **Game Controller Support:** Plug in or connect any MFi, Xbox, DualShock, or DualSense controller.
+* **One-Tap Export to Delta:** Tap the **Delta** button in the navigation bar to export `FFXI-Advance.gba` directly to the Delta iOS app installed on the device.
+* **Export Battery Save:** Export `.sav` SRAM save files to synchronize character progress between the standalone app and Delta emulator.
+* **Playtest Feedback Hub:** View live FPS, memory usage, current zone ID, and submit playtest telemetry.
 
 ---
 
-## 5. What Testers Can Do in the TestFlight App
+## 4. Encryption & Export Compliance
 
-* **Play Standalone:** Full 60 FPS gameplay on iOS with touch controls or physical Bluetooth controllers.
-* **Export to Delta:** Tap the **Delta** button in the top bar to export `FFXI-Advance.gba` directly to the Delta app on the same iPhone.
-* **Transfer Saves:** Export `.sav` battery save files to continue playing in Delta without losing character progression.
-* **Submit Diagnostics:** Use the in-app **Playtest Hub** button to view session telemetry (FPS, current zone, player coordinates) and log bug reports.
+In `ios/FFXIDelta/Resources/Info.plist`, `ITSAppUsesNonExemptEncryption` is set to `<false/>`. TestFlight will automatically mark new builds as compliant without holding them for manual cryptography review questions.

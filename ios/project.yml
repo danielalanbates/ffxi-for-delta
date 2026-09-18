@@ -13,7 +13,10 @@ settings:
     INFOPLIST_FILE: FFXIDelta/Resources/Info.plist
     GENERATE_INFOPLIST_FILE: NO
     ENABLE_BITCODE: NO
-    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: MG4YW8XX2Z
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "Apple Distribution: Daniel Bates (MG4YW8XX2Z)"
+    PROVISIONING_PROFILE_SPECIFIER: "FFXI Delta AppStore Profile"
 
 targets:
   FFXIDelta:
@@ -29,3 +32,7 @@ targets:
         INFOPLIST_FILE: FFXIDelta/Resources/Info.plist
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: MG4YW8XX2Z
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Distribution: Daniel Bates (MG4YW8XX2Z)"
+        PROVISIONING_PROFILE_SPECIFIER: "FFXI Delta AppStore Profile"

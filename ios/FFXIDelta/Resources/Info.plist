@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>FFXI Delta</string>
 	<key>CFBundleExecutable</key>
-	<string>FFXIDelta</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.batesai.ffxi</string>
 	<key>CFBundleInfoDictionaryVersion</key>

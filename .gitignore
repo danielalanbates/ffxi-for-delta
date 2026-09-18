@@ -24,7 +24,10 @@ Thumbs.db
 
 # Xcode & Swift Build artifacts
 build/
+dist/
 DerivedData/
+*.xcarchive
+*.ipa
 *.xcodeproj/*sync/
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcuserdata/
