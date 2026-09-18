@@ -1,0 +1,30 @@
+name: FFXIDelta
+options:
+  bundleIdPrefix: org.batesai
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: org.batesai.ffxi
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    INFOPLIST_FILE: FFXIDelta/Resources/Info.plist
+    GENERATE_INFOPLIST_FILE: NO
+    ENABLE_BITCODE: NO
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  FFXIDelta:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: FFXIDelta
+    settings:
+      base:
+        PRODUCT_NAME: "FFXI Delta"
+        PRODUCT_BUNDLE_IDENTIFIER: org.batesai.ffxi
+        INFOPLIST_FILE: FFXIDelta/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO

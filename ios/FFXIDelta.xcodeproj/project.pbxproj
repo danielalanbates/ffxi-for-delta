@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1356A5857C6129D72A23B1BC /* GameControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD382F43AF8BEEDAF1C805 /* GameControllerManager.swift */; };
+		2676C3A85831F36D0E6B8D7B /* FFXI-Advance.gba in Resources */ = {isa = PBXBuildFile; fileRef = ED3A2D2202C14440F2066FC1 /* FFXI-Advance.gba */; };
+		57B8E49E4A9A40D71957218A /* MainGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981483A8101422C15B1E0418 /* MainGameView.swift */; };
+		5C4BFD75E90022DF8B1B5A3B /* GameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF51F9B9E9CB575DB697B8 /* GameScreenView.swift */; };
+		5DEB27B08AABC41AAEDCE3F0 /* FFXIDeltaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A24D1B022F8A2A19E1B76A /* FFXIDeltaApp.swift */; };
+		7BBBDD0B5325436DE788DD98 /* ControllerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BA568BDB8206DE29E3F34 /* ControllerOverlayView.swift */; };
+		7FE7E290EEAD2333FA482777 /* VanaDielEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD63DF568C350749829B702E /* VanaDielEngine.swift */; };
+		AE8A20909693199A905B63E5 /* DeltaExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363F78E8566DDD93BE57C0A3 /* DeltaExportView.swift */; };
+		F1141785B59C79AC80BC003D /* PlaytestFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF3CD5AFB49C0AFECC3FE4D /* PlaytestFeedbackView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		363F78E8566DDD93BE57C0A3 /* DeltaExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaExportView.swift; sourceTree = "<group>"; };
+		39CD382F43AF8BEEDAF1C805 /* GameControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControllerManager.swift; sourceTree = "<group>"; };
+		681201EAA0C4334607E5A181 /* FFXIDelta.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FFXIDelta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF3CD5AFB49C0AFECC3FE4D /* PlaytestFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaytestFeedbackView.swift; sourceTree = "<group>"; };
+		8CFF51F9B9E9CB575DB697B8 /* GameScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenView.swift; sourceTree = "<group>"; };
+		959B8E10436053D1247F9A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		981483A8101422C15B1E0418 /* MainGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameView.swift; sourceTree = "<group>"; };
+		9C6BA568BDB8206DE29E3F34 /* ControllerOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerOverlayView.swift; sourceTree = "<group>"; };
+		E4A24D1B022F8A2A19E1B76A /* FFXIDeltaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFXIDeltaApp.swift; sourceTree = "<group>"; };
+		ED3A2D2202C14440F2066FC1 /* FFXI-Advance.gba */ = {isa = PBXFileReference; path = "FFXI-Advance.gba"; sourceTree = "<group>"; };
+		FD63DF568C350749829B702E /* VanaDielEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanaDielEngine.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2B7710B6641CF1AD5F9FF7AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				681201EAA0C4334607E5A181 /* FFXIDelta.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48C436F4014DF6B33A1EBC2A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FD63DF568C350749829B702E /* VanaDielEngine.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7051F9B5AF94BC2BC0F50BDC /* FFXIDelta */ = {
+			isa = PBXGroup;
+			children = (
+				7453F614E944951C658FF24A /* App */,
+				E6A3A9C0BA83879A2B4D2811 /* Controllers */,
+				48C436F4014DF6B33A1EBC2A /* Core */,
+				EC738F59507DD97FB78963DB /* Resources */,
+				EB996640B0CB1C840E279522 /* Views */,
+			);
+			path = FFXIDelta;
+			sourceTree = "<group>";
+		};
+		7453F614E944951C658FF24A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E4A24D1B022F8A2A19E1B76A /* FFXIDeltaApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7EB2356EBD8E50239F43B639 = {
+			isa = PBXGroup;
+			children = (
+				7051F9B5AF94BC2BC0F50BDC /* FFXIDelta */,
+				2B7710B6641CF1AD5F9FF7AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6A3A9C0BA83879A2B4D2811 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				39CD382F43AF8BEEDAF1C805 /* GameControllerManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EB996640B0CB1C840E279522 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C6BA568BDB8206DE29E3F34 /* ControllerOverlayView.swift */,
+				363F78E8566DDD93BE57C0A3 /* DeltaExportView.swift */,
+				8CFF51F9B9E9CB575DB697B8 /* GameScreenView.swift */,
+				981483A8101422C15B1E0418 /* MainGameView.swift */,
+				6BF3CD5AFB49C0AFECC3FE4D /* PlaytestFeedbackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC738F59507DD97FB78963DB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ED3A2D2202C14440F2066FC1 /* FFXI-Advance.gba */,
+				959B8E10436053D1247F9A1F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0381AB6C0CF9422465ADCDCC /* FFXIDelta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1479C6BAFDD84710E6855683 /* Build configuration list for PBXNativeTarget "FFXIDelta" */;
+			buildPhases = (
+				109AB091DC42DD02C1D1C8C4 /* Sources */,
+				E4F74CE2F16AE3AA68E8125B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FFXIDelta;
+			packageProductDependencies = (
+			);
+			productName = FFXIDelta;
+			productReference = 681201EAA0C4334607E5A181 /* FFXIDelta.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7721A2EA0BF383B266CB420 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0381AB6C0CF9422465ADCDCC = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 674F7A9E2F5D8A5490ED0A08 /* Build configuration list for PBXProject "FFXIDelta" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7EB2356EBD8E50239F43B639;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0381AB6C0CF9422465ADCDCC /* FFXIDelta */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E4F74CE2F16AE3AA68E8125B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2676C3A85831F36D0E6B8D7B /* FFXI-Advance.gba in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		109AB091DC42DD02C1D1C8C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BBBDD0B5325436DE788DD98 /* ControllerOverlayView.swift in Sources */,
+				AE8A20909693199A905B63E5 /* DeltaExportView.swift in Sources */,
+				5DEB27B08AABC41AAEDCE3F0 /* FFXIDeltaApp.swift in Sources */,
+				1356A5857C6129D72A23B1BC /* GameControllerManager.swift in Sources */,
+				5C4BFD75E90022DF8B1B5A3B /* GameScreenView.swift in Sources */,
+				57B8E49E4A9A40D71957218A /* MainGameView.swift in Sources */,
+				F1141785B59C79AC80BC003D /* PlaytestFeedbackView.swift in Sources */,
+				7FE7E290EEAD2333FA482777 /* VanaDielEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0E98D253909237E6324903AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FFXIDelta/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.batesai.ffxi;
+				PRODUCT_NAME = "FFXI Delta";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		49DAF185898C0367AE7A7019 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FFXIDelta/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.batesai.ffxi;
+				PRODUCT_NAME = "FFXI Delta";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94136B052BECCBD772D5906E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FFXIDelta/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.batesai.ffxi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C69187D579E3A66BFE274606 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FFXIDelta/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.batesai.ffxi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1479C6BAFDD84710E6855683 /* Build configuration list for PBXNativeTarget "FFXIDelta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49DAF185898C0367AE7A7019 /* Debug */,
+				0E98D253909237E6324903AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		674F7A9E2F5D8A5490ED0A08 /* Build configuration list for PBXProject "FFXIDelta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94136B052BECCBD772D5906E /* Debug */,
+				C69187D579E3A66BFE274606 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A7721A2EA0BF383B266CB420 /* Project object */;
+}

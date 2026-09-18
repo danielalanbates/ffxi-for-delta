@@ -1,0 +1,50 @@
+# Personal data & secrets
+*.p8
+*.p12
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.key
+*.pem
+*.env
+*.env.*
+accounts.json
+.dbpass
+*.dbpass
+personal/
+secrets/
+
+# OS and Editor artifacts
+.DS_Store
+*.swp
+*~
+Thumbs.db
+.vscode/
+.idea/
+
+# Xcode & Swift Build artifacts
+build/
+DerivedData/
+*.xcodeproj/*sync/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+.swiftpm/
+Package.resolved
+
+# GBA ROM build artifacts
+*.o
+*.elf
+*.map
+rom/build/
+rom/obj/
+
+# Logs & scratch files
+*.log
+logs/
+scratch/
+archive/
+
+# Keep release ROMs and bundle scripts intact
+!rom/dist/
+!rom/dist/*.gba
