@@ -15,6 +15,7 @@
 		7BBBDD0B5325436DE788DD98 /* ControllerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BA568BDB8206DE29E3F34 /* ControllerOverlayView.swift */; };
 		7FE7E290EEAD2333FA482777 /* VanaDielEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD63DF568C350749829B702E /* VanaDielEngine.swift */; };
 		AE8A20909693199A905B63E5 /* DeltaExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363F78E8566DDD93BE57C0A3 /* DeltaExportView.swift */; };
+		B49775E8CBD7BD4F750AFDCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C748079EB29B508B1E5FD3F0 /* Assets.xcassets */; };
 		F1141785B59C79AC80BC003D /* PlaytestFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF3CD5AFB49C0AFECC3FE4D /* PlaytestFeedbackView.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		959B8E10436053D1247F9A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		981483A8101422C15B1E0418 /* MainGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameView.swift; sourceTree = "<group>"; };
 		9C6BA568BDB8206DE29E3F34 /* ControllerOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerOverlayView.swift; sourceTree = "<group>"; };
+		C748079EB29B508B1E5FD3F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4A24D1B022F8A2A19E1B76A /* FFXIDeltaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFXIDeltaApp.swift; sourceTree = "<group>"; };
 		ED3A2D2202C14440F2066FC1 /* FFXI-Advance.gba */ = {isa = PBXFileReference; path = "FFXI-Advance.gba"; sourceTree = "<group>"; };
 		FD63DF568C350749829B702E /* VanaDielEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanaDielEngine.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		EC738F59507DD97FB78963DB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C748079EB29B508B1E5FD3F0 /* Assets.xcassets */,
 				ED3A2D2202C14440F2066FC1 /* FFXI-Advance.gba */,
 				959B8E10436053D1247F9A1F /* Info.plist */,
 			);
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B49775E8CBD7BD4F750AFDCE /* Assets.xcassets in Resources */,
 				2676C3A85831F36D0E6B8D7B /* FFXI-Advance.gba in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
