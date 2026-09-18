@@ -14,42 +14,38 @@ public struct ControllerOverlayView: View {
     public init() {}
 
     public var body: some View {
-        VStack(spacing: 12) {
-            // Shoulder Triggers (L & R)
+        VStack(spacing: 8) {
+            // Shoulder Triggers (L & R) tucked under the screen
             HStack {
                 ShoulderButton(label: "L", buttonMask: VanaDielEngine.ControllerInput.l)
                 Spacer()
                 ShoulderButton(label: "R", buttonMask: VanaDielEngine.ControllerInput.r)
             }
-            .padding(.horizontal, 24)
-
-            Spacer()
+            .padding(.horizontal, 28)
 
             // Main Lower Controller Area: D-Pad, Center Buttons, A/B
-            HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: 0) {
                 // Directional Pad (Left)
                 DPadView()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 116, height: 116)
 
-                Spacer()
+                Spacer(minLength: 8)
 
                 // Center Menu Buttons (Select, Start)
-                VStack(spacing: 16) {
-                    HStack(spacing: 14) {
-                        PillButton(label: "SELECT", buttonMask: VanaDielEngine.ControllerInput.select)
-                        PillButton(label: "START", buttonMask: VanaDielEngine.ControllerInput.start)
-                    }
+                HStack(spacing: 12) {
+                    PillButton(label: "SELECT", buttonMask: VanaDielEngine.ControllerInput.select)
+                    PillButton(label: "START", buttonMask: VanaDielEngine.ControllerInput.start)
                 }
-                .padding(.bottom, 20)
+                .padding(.top, 10)
 
-                Spacer()
+                Spacer(minLength: 8)
 
                 // Action Buttons (Right: B and A)
                 ABButtonsView()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 116, height: 116)
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 24)
+            .padding(.bottom, 10)
         }
         .onAppear {
             haptics.prepare()
@@ -66,15 +62,15 @@ struct ShoulderButton: View {
 
     var body: some View {
         Text(label)
-            .font(.system(size: 14, weight: .bold, design: .rounded))
+            .font(.system(size: 13, weight: .bold, design: .rounded))
             .foregroundColor(.white.opacity(0.85))
-            .frame(width: 80, height: 36)
+            .frame(width: 72, height: 30)
             .background(
-                RoundedRectangle(cornerRadius: 18)
-                    .fill(isPressed ? Color.purple.opacity(0.6) : Color.black.opacity(0.45))
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(isPressed ? Color.purple.opacity(0.7) : Color.black.opacity(0.55))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 18)
-                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.white.opacity(0.25), lineWidth: 1)
                     )
             )
             .scaleEffect(isPressed ? 0.94 : 1.0)
@@ -95,52 +91,53 @@ struct ShoulderButton: View {
     }
 }
 
-// Directional Pad with 8-way drag gesture
+// Directional Pad with 8-way touch detection
 struct DPadView: View {
     @State private var activeDirection: String? = nil
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
     var body: some View {
         ZStack {
-            // D-Pad Background Cross
+            // D-Pad Background Circle
             Circle()
-                .fill(Color.black.opacity(0.4))
-                .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1))
+                .fill(Color.black.opacity(0.45))
+                .overlay(Circle().stroke(Color.white.opacity(0.18), lineWidth: 1))
 
-            // Cross Shapes
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color.white.opacity(0.18))
-                .frame(width: 44, height: 130)
+            // Cross Vertical Bar
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color.white.opacity(0.22))
+                .frame(width: 36, height: 104)
 
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color.white.opacity(0.18))
-                .frame(width: 130, height: 44)
+            // Cross Horizontal Bar
+            RoundedRectangle(cornerRadius: 5)
+                .fill(Color.white.opacity(0.22))
+                .frame(width: 104, height: 36)
 
-            // Direction Indicators
+            // Direction Triangles
             VStack {
                 Image(systemName: "triangle.fill")
-                    .font(.system(size: 10))
-                    .foregroundColor(activeDirection == "UP" ? .yellow : .white.opacity(0.6))
-                    .padding(.top, 10)
+                    .font(.system(size: 8))
+                    .foregroundColor(activeDirection == "UP" ? .yellow : .white.opacity(0.7))
+                    .padding(.top, 7)
                 Spacer()
                 Image(systemName: "triangle.fill")
                     .rotationEffect(.degrees(180))
-                    .font(.system(size: 10))
-                    .foregroundColor(activeDirection == "DOWN" ? .yellow : .white.opacity(0.6))
-                    .padding(.bottom, 10)
+                    .font(.system(size: 8))
+                    .foregroundColor(activeDirection == "DOWN" ? .yellow : .white.opacity(0.7))
+                    .padding(.bottom, 7)
             }
             HStack {
                 Image(systemName: "triangle.fill")
                     .rotationEffect(.degrees(-90))
-                    .font(.system(size: 10))
-                    .foregroundColor(activeDirection == "LEFT" ? .yellow : .white.opacity(0.6))
-                    .padding(.leading, 10)
+                    .font(.system(size: 8))
+                    .foregroundColor(activeDirection == "LEFT" ? .yellow : .white.opacity(0.7))
+                    .padding(.leading, 7)
                 Spacer()
                 Image(systemName: "triangle.fill")
                     .rotationEffect(.degrees(90))
-                    .font(.system(size: 10))
-                    .foregroundColor(activeDirection == "RIGHT" ? .yellow : .white.opacity(0.6))
-                    .padding(.trailing, 10)
+                    .font(.system(size: 8))
+                    .foregroundColor(activeDirection == "RIGHT" ? .yellow : .white.opacity(0.7))
+                    .padding(.trailing, 7)
             }
         }
         .gesture(
@@ -155,12 +152,12 @@ struct DPadView: View {
     }
 
     private func handleDPadTouch(location: CGPoint) {
-        let center = CGPoint(x: 75, y: 75)
+        let center = CGPoint(x: 58, y: 58)
         let dx = location.x - center.x
         let dy = location.y - center.y
         let dist = hypot(dx, dy)
 
-        if dist < 15 {
+        if dist < 12 {
             clearDPad()
             return
         }
@@ -168,7 +165,7 @@ struct DPadView: View {
         let angle = atan2(dy, dx) * 180 / .pi
         let engine = VanaDielEngine.shared
 
-        // Reset directions
+        // Reset
         engine.setButtonState(button: VanaDielEngine.ControllerInput.up, isDown: false)
         engine.setButtonState(button: VanaDielEngine.ControllerInput.down, isDown: false)
         engine.setButtonState(button: VanaDielEngine.ControllerInput.left, isDown: false)
@@ -206,18 +203,18 @@ struct ABButtonsView: View {
             // Button B (Lower Left)
             RoundActionButton(
                 label: "B",
-                color: Color(red: 0.8, green: 0.2, blue: 0.4),
+                color: Color(red: 0.82, green: 0.22, blue: 0.42),
                 buttonMask: VanaDielEngine.ControllerInput.b
             )
-            .offset(x: -28, y: 18)
+            .offset(x: -22, y: 14)
 
             // Button A (Upper Right)
             RoundActionButton(
                 label: "A",
-                color: Color(red: 0.85, green: 0.3, blue: 0.5),
+                color: Color(red: 0.88, green: 0.28, blue: 0.48),
                 buttonMask: VanaDielEngine.ControllerInput.a
             )
-            .offset(x: 28, y: -18)
+            .offset(x: 22, y: -14)
         }
     }
 }
@@ -231,12 +228,12 @@ struct RoundActionButton: View {
 
     var body: some View {
         Circle()
-            .fill(isPressed ? color.opacity(0.8) : color.opacity(0.6))
-            .frame(width: 54, height: 54)
-            .overlay(Circle().stroke(Color.white.opacity(0.3), lineWidth: 1.5))
+            .fill(isPressed ? color.opacity(0.9) : color.opacity(0.65))
+            .frame(width: 46, height: 46)
+            .overlay(Circle().stroke(Color.white.opacity(0.35), lineWidth: 1.5))
             .overlay(
                 Text(label)
-                    .font(.system(size: 20, weight: .black, design: .rounded))
+                    .font(.system(size: 18, weight: .black, design: .rounded))
                     .foregroundColor(.white)
             )
             .scaleEffect(isPressed ? 0.92 : 1.0)
@@ -264,19 +261,19 @@ struct PillButton: View {
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 3) {
             Capsule()
-                .fill(isPressed ? Color.gray : Color.black.opacity(0.5))
-                .frame(width: 38, height: 12)
+                .fill(isPressed ? Color.gray : Color.black.opacity(0.55))
+                .frame(width: 32, height: 10)
                 .rotationEffect(.degrees(-25))
                 .overlay(
                     Capsule()
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        .stroke(Color.white.opacity(0.25), lineWidth: 1)
                         .rotationEffect(.degrees(-25))
                 )
             Text(label)
-                .font(.system(size: 9, weight: .bold, design: .monospaced))
-                .foregroundColor(.white.opacity(0.6))
+                .font(.system(size: 8, weight: .bold, design: .monospaced))
+                .foregroundColor(.white.opacity(0.65))
         }
         .scaleEffect(isPressed ? 0.92 : 1.0)
         .simultaneousGesture(

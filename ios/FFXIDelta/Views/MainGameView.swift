@@ -17,6 +17,11 @@ public struct MainGameView: View {
 
     public var body: some View {
         GeometryReader { geometry in
+            let maxScreenH = max(140.0, geometry.size.height - 230.0)
+            let idealScreenH = (geometry.size.width - 16.0) * (160.0 / 240.0)
+            let screenH = min(idealScreenH, maxScreenH)
+            let screenW = screenH * (240.0 / 160.0)
+
             ZStack {
                 // Background dark styling
                 LinearGradient(
@@ -89,24 +94,24 @@ public struct MainGameView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 6)
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 6)
 
                     // Retro Bezel & Game Screen
                     VStack {
                         GameScreenView()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: geometry.size.width * (160.0 / 240.0))
+                            .frame(width: screenW, height: screenH)
                             .background(Color.black)
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.15), lineWidth: 1.5))
-                            .padding(.horizontal, 8)
                     }
+                    .frame(maxWidth: .infinity)
 
-                    Spacer()
+                    Spacer(minLength: 4)
 
                     // Virtual Touch Gamepad
                     ControllerOverlayView()
                         .frame(maxWidth: .infinity)
+                        .padding(.bottom, 4)
                 }
             }
         }

@@ -25,8 +25,12 @@ public final class VanaDielEngine: ObservableObject {
     public static let screenWidth: Int = 240
     public static let screenHeight: Int = 160
 
-    // Framebuffer in RGBA32 format (240x160)
-    @Published public private(set) var pixelBuffer: [UInt32]
+    // Internal framebuffer in RGBA32 format (240x160)
+    private var renderBuffer: [UInt32]
+    public var pixelBuffer: [UInt32] { return renderBuffer }
+
+    // Crash-proof immutable CGImage published once per tick
+    @Published public private(set) var currentFrame: CGImage? = nil
     @Published public var currentScreen: GameScreenState = .title
 
     // Telemetry & Diagnostics for TestFlight
@@ -111,8 +115,9 @@ public final class VanaDielEngine: ObservableObject {
     private var lastFrameTime: CFTimeInterval = 0
 
     private init() {
-        self.pixelBuffer = [UInt32](repeating: 0xFF0A0E18, count: VanaDielEngine.screenWidth * VanaDielEngine.screenHeight)
+        self.renderBuffer = [UInt32](repeating: 0xFF0A0E18, count: VanaDielEngine.screenWidth * VanaDielEngine.screenHeight)
         initGameWorld()
+        generateFrameImage()
     }
 
     public func startEngine() {
@@ -156,8 +161,33 @@ public final class VanaDielEngine: ObservableObject {
 
         updateLogic()
         renderScreen()
+        generateFrameImage()
 
         previousInput = currentInput
+    }
+
+    private func generateFrameImage() {
+        let byteCount = VanaDielEngine.screenWidth * VanaDielEngine.screenHeight * 4
+        let data = Data(bytes: renderBuffer, count: byteCount)
+        guard let provider = CGDataProvider(data: data as CFData) else { return }
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
+
+        if let cgImage = CGImage(
+            width: VanaDielEngine.screenWidth,
+            height: VanaDielEngine.screenHeight,
+            bitsPerComponent: 8,
+            bitsPerPixel: 32,
+            bytesPerRow: VanaDielEngine.screenWidth * 4,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo,
+            provider: provider,
+            decode: nil,
+            shouldInterpolate: false,
+            intent: .defaultIntent
+        ) {
+            self.currentFrame = cgImage
+        }
     }
 
     private func initGameWorld() {
@@ -740,7 +770,7 @@ public final class VanaDielEngine: ObservableObject {
 
     // Primitives
     private func fillBuffer(color: UInt32) {
-        for i in 0..<pixelBuffer.count { pixelBuffer[i] = color }
+        for i in 0..<renderBuffer.count { renderBuffer[i] = color }
     }
 
     private func fillRect(x: Int, y: Int, w: Int, h: Int, color: UInt32) {
@@ -751,7 +781,7 @@ public final class VanaDielEngine: ObservableObject {
         for j in y0..<y1 {
             let rowOffset = j * VanaDielEngine.screenWidth
             for i in x0..<x1 {
-                pixelBuffer[rowOffset + i] = color
+                renderBuffer[rowOffset + i] = color
             }
         }
     }
@@ -815,7 +845,7 @@ public final class VanaDielEngine: ObservableObject {
                 guard px >= 0 && px < VanaDielEngine.screenWidth else { continue }
                 // Use a simple font bit pattern
                 if isFontBitSet(glyphIndex: glyphIndex, row: row, col: col) {
-                    pixelBuffer[rowOffset + px] = color
+                    renderBuffer[rowOffset + px] = color
                 }
             }
         }

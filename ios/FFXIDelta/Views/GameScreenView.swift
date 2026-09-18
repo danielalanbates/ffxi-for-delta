@@ -8,7 +8,6 @@ import SwiftUI
 
 public struct GameScreenView: View {
     @ObservedObject var engine = VanaDielEngine.shared
-    @State private var screenImage: UIImage?
 
     public init() {}
 
@@ -16,49 +15,26 @@ public struct GameScreenView: View {
         ZStack {
             Color.black
 
-            if let image = screenImage {
-                Image(uiImage: image)
+            if let frame = engine.currentFrame {
+                Image(decorative: frame, scale: 1.0, orientation: .up)
                     .resizable()
                     .interpolation(.none) // Sharp nearest-neighbor retro pixel scaling
                     .aspectRatio(CGFloat(VanaDielEngine.screenWidth) / CGFloat(VanaDielEngine.screenHeight), contentMode: .fit)
-                    .shadow(color: .black.opacity(0.8), radius: 10, x: 0, y: 5)
+                    .shadow(color: .black.opacity(0.8), radius: 8, x: 0, y: 4)
             } else {
-                ProgressView("Loading Vana'diel...")
-                    .foregroundColor(.white)
+                VStack(spacing: 8) {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    Text("Loading Vana'diel...")
+                        .font(.system(size: 11, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white.opacity(0.8))
+                }
             }
 
-            // CRT Scanline subtle overlay toggle
+            // CRT Scanline subtle retro overlay
             ScanlineOverlay()
                 .allowsHitTesting(false)
-                .opacity(0.12)
-        }
-        .onReceive(engine.$pixelBuffer) { buffer in
-            updateImage(from: buffer)
-        }
-    }
-
-    private func updateImage(from buffer: [UInt32]) {
-        let width = VanaDielEngine.screenWidth
-        let height = VanaDielEngine.screenHeight
-
-        buffer.withUnsafeBytes { rawBuffer in
-            guard let baseAddress = rawBuffer.baseAddress else { return }
-            let colorSpace = CGColorSpaceCreateDeviceRGB()
-            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
-
-            guard let context = CGContext(
-                data: UnsafeMutableRawPointer(mutating: baseAddress),
-                width: width,
-                height: height,
-                bitsPerComponent: 8,
-                bytesPerRow: width * 4,
-                space: colorSpace,
-                bitmapInfo: bitmapInfo.rawValue
-            ), let cgImage = context.makeImage() else {
-                return
-            }
-
-            self.screenImage = UIImage(cgImage: cgImage)
+                .opacity(0.08)
         }
     }
 }
