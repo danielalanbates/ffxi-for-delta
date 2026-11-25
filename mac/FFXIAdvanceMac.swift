@@ -209,14 +209,27 @@ struct MacMainView: View {
         }
     }
 
+    /// Project root: $FFXI_DELTA_ROOT, else the Google Drive account that holds My Drive/Code/FFXI-for-Delta.
+    private var projectRoot: String {
+        if let env = ProcessInfo.processInfo.environment["FFXI_DELTA_ROOT"], !env.isEmpty { return env }
+        let fm = FileManager.default
+        let cloud = fm.homeDirectoryForCurrentUser.appendingPathComponent("Library/CloudStorage")
+        let drives = ((try? fm.contentsOfDirectory(atPath: cloud.path)) ?? []).sorted()
+        for drive in drives where drive.hasPrefix("GoogleDrive-") {
+            let p = cloud.appendingPathComponent(drive).appendingPathComponent("My Drive/Code/FFXI-for-Delta").path
+            if fm.fileExists(atPath: p) { return p }
+        }
+        return fm.currentDirectoryPath
+    }
+
     private func openROMInFinder() {
-        let romPath = "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta/rom/dist/FFXI-Advance.gba"
+        let romPath = projectRoot + "/rom/dist/FFXI-Advance.gba"
         let url = URL(fileURLWithPath: romPath)
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
 
     private func launchInMednafen() {
-        let romPath = "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta/rom/dist/FFXI-Advance.gba"
+        let romPath = projectRoot + "/rom/dist/FFXI-Advance.gba"
         let task = Process()
         task.launchPath = "/opt/homebrew/bin/mednafen"
         task.arguments = ["-force_module", "gba", romPath]
@@ -225,7 +238,7 @@ struct MacMainView: View {
     }
 
     private func copyTestFlightGuide() {
-        let guidePath = "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta/docs/TESTFLIGHT_GUIDE.md"
+        let guidePath = projectRoot + "/docs/TESTFLIGHT_GUIDE.md"
         let url = URL(fileURLWithPath: guidePath)
         NSWorkspace.shared.open(url)
     }

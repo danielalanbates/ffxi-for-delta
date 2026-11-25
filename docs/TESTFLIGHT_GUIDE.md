@@ -14,14 +14,14 @@
 The repository includes a fully automated, headless release pipeline that compiles, signs with your Apple Distribution identity, packages the `.ipa`, and uploads to TestFlight:
 
 ```bash
-cd "/Users/daniel/Library/CloudStorage/GoogleDrive-danielalanbates@gmail.com/My Drive/Code/FFXI-for-Delta"
+cd "$HOME/Library/CloudStorage/GoogleDrive-YOUR_ACCOUNT/My Drive/Code/FFXI-for-Delta"
 bash scripts/deploy_testflight.sh
 ```
 
 This pipeline executes:
 1. `scripts/package_testflight_ipa.py`: Unlocks the CI keychain, embeds the distribution provisioning profile, signs the binary with your Apple Distribution certificate, and outputs `dist/testflight/export/FFXIDelta.ipa`.
 2. `scripts/upload_testflight.sh`: Validates and uploads `FFXIDelta.ipa` to TestFlight using `xcrun altool` and your App Store Connect API Key (`32R84GFV2F`).
-3. `scripts/invite_testflight_tester.py`: Adds `danielalanbates@gmail.com` to the TestFlight beta testing group and triggers the email invitation with the installation link.
+3. `scripts/invite_testflight_tester.py`: Adds the tester in `TESTFLIGHT_TESTER_EMAIL` (env var or gitignored `.env`) to the TestFlight beta testing group and triggers the email invitation with the installation link.
 
 ---
 
@@ -44,7 +44,7 @@ Once created, run:
 ```bash
 bash scripts/deploy_testflight.sh
 ```
-The IPA uploads immediately, Apple processes the build (~5-10 minutes), and TestFlight sends an invitation email to `danielalanbates@gmail.com`!
+The IPA uploads immediately, Apple processes the build (~5-10 minutes), and TestFlight sends an invitation email to the address in `TESTFLIGHT_TESTER_EMAIL`!
 
 ---
 

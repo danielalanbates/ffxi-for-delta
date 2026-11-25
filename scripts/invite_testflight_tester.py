@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
 FFXI for Delta - TestFlight Tester Invitation Script
-Adds danielalanbates@gmail.com to the TestFlight beta testers for FFXI Delta.
+Adds the tester in TESTFLIGHT_TESTER_EMAIL to the TestFlight beta testers for FFXI Delta.
 Copyright (c) 2026 Daniel Bates / Bates LLC. All rights reserved.
 """
+import os
 import time
+from pathlib import Path
 import json
 import jwt
 import requests
@@ -12,7 +14,20 @@ import requests
 KEY_ID = "32R84GFV2F"
 ISSUER_ID = "67d2d531-0ef2-43f5-8319-7505313c9fd1"
 KEY_PATH = "/Users/daniel/.private_keys/AuthKey_32R84GFV2F.p8"
-EMAIL = "danielalanbates@gmail.com"
+def _tester_email():
+    """Tester address lives outside git: $TESTFLIGHT_TESTER_EMAIL or the gitignored .env at the repo root."""
+    v = os.environ.get("TESTFLIGHT_TESTER_EMAIL", "").strip()
+    if v:
+        return v
+    env = Path(__file__).resolve().parent.parent / ".env"
+    if env.exists():
+        for line in env.read_text().splitlines():
+            if line.startswith("TESTFLIGHT_TESTER_EMAIL="):
+                return line.split("=", 1)[1].strip().strip("\"'")
+    raise SystemExit("Set TESTFLIGHT_TESTER_EMAIL (env var, or a line in the gitignored .env at the repo root).")
+
+
+EMAIL = _tester_email()
 FIRST_NAME = "Daniel"
 LAST_NAME = "Bates"
 BUNDLE_ID = "org.batesai.ffxi"

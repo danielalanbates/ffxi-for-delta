@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================
 # FFXI for Delta - One-Step TestFlight Deployment Pipeline
-# Packages signed IPA, uploads via altool, and invites danielalanbates@gmail.com
+# Packages signed IPA, uploads via altool, and invites $TESTFLIGHT_TESTER_EMAIL
 # Copyright (c) 2026 Daniel Bates / Bates LLC. All rights reserved.
 # =============================================================================
 set -euo pipefail
